@@ -1,6 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testproject/UI/home_screen.dart';
+import 'package:testproject/api/network.dart';
 import 'package:testproject/widgets/social_login.dart';
 
 import '../widgets/login_Button.dart';
@@ -19,7 +22,7 @@ class _LogINScreenState extends State<LogINScreen> {
   late String _email;
   late String _password;
   late bool checkvalue = false;
-
+NetworkUtil networkUtil = NetworkUtil(); 
   void _submit() {
     final form = formKey.currentState;
 
@@ -35,10 +38,17 @@ class _LogINScreenState extends State<LogINScreen> {
       content: Text("Email : $_email, password : $_password"),
     );
     scaffoldKey.currentState;
+    
+    networkUtil.getCoinData();
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Color(0xff002c7b)));
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -57,12 +67,12 @@ class _LogINScreenState extends State<LogINScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       _buildText("Login".toUpperCase(), 18,
-                          Alignment.centerLeft, Colors.black),
+                          Alignment.centerLeft, Color(0xff464646)),
                       const SizedBox(
                         height: 30,
                       ),
                       _buildText(
-                          "Email", 18, Alignment.centerLeft, Colors.black),
+                          "Email", 18, Alignment.centerLeft, Color(0xff464646)),
                       const SizedBox(
                         height: 3,
                       ),
@@ -72,7 +82,8 @@ class _LogINScreenState extends State<LogINScreen> {
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6.0),
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey),
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(6),
@@ -87,8 +98,8 @@ class _LogINScreenState extends State<LogINScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      _buildText(
-                          "Password", 18, Alignment.centerLeft, Colors.black),
+                      _buildText("Password", 18, Alignment.centerLeft,
+                          const Color(0xff464646)),
                       const SizedBox(
                         height: 3,
                       ),
@@ -97,10 +108,14 @@ class _LogINScreenState extends State<LogINScreen> {
                           horizontal: 20,
                         ),
                         child: TextFormField(
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(6),
+                          ],
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6.0),
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    const BorderSide(color: Colors.grey),
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(6),
@@ -108,7 +123,7 @@ class _LogINScreenState extends State<LogINScreen> {
                                       width: 3, color: Colors.grey)),
                               labelText: ""),
                           validator: (val) =>
-                              val!.length < 6 ? 'Password too short' : null,
+                              val!.length > 6 ? 'Password less then 6' : null,
                           onSaved: (val) => _password = val!,
                           obscureText: true,
                         ),
@@ -118,7 +133,9 @@ class _LogINScreenState extends State<LogINScreen> {
                         child: CheckboxListTile(
                           title: Text("Remember me ?",
                               style: GoogleFonts.lato(
-                                  fontSize: 18, color: Colors.black)),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Color(0xff464646))),
                           value: checkvalue,
                           onChanged: (newValue) {
                             FocusManager.instance.primaryFocus?.unfocus();
@@ -127,48 +144,48 @@ class _LogINScreenState extends State<LogINScreen> {
                               print(newValue);
                             });
                           },
-                          activeColor: Colors.pink,
+                          activeColor: Color(0xffa5a4a4),
                           checkColor: Colors.white,
                           contentPadding:
                               const EdgeInsets.only(left: 0, top: 0),
-                          controlAffinity: ListTileControlAffinity
-                              .leading, //  <-- leading Checkbox
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
                       ),
                       LoginButton(
                         centerText: "Login".toUpperCase(),
                         actionButton: () => _submit(),
                       ),
-                      _buildText("Forgot Password", 18, Alignment.bottomRight,
-                          Colors.pink),
-
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      _buildText(
+                        "Forgot Password",
+                        18,
+                        Alignment.bottomRight,
+                        const Color(0xffa5a4a4),
+                      ),
                       const SocialLogin(),
                       const SizedBox(
                         height: 20,
                       ),
-
                       RichText(
-                          selectionColor: Colors.amber,
                           text: TextSpan(
                               text: "Need an account?  ",
                               style: const TextStyle(
-                                  color: Colors.pink, fontSize: 18),
+                                  color: Color(0xff585858), fontSize: 18),
                               children: [
-                                TextSpan(
-                                    text: "Sign Up",
-                                    style: const TextStyle(
-                                        height: 1.5,
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.pink,
-                                        decorationColor: Colors.pink,
-                                        decorationThickness: 4,
-                                        fontSize: 18),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {})
-                              ]))
-
-                      // ElevatedButton(
-                      //     onPressed: _submit, child: const Text("Login"))
+                            TextSpan(
+                                text: "Sign Up",
+                                style: const TextStyle(
+                                    height: 1.5,
+                                    decoration: TextDecoration.underline,
+                                    color: Color(0xff585858),
+                                    decorationColor: Color(0xff585858),
+                                    decorationThickness: 3,
+                                    fontSize: 18),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {})
+                          ]))
                     ],
                   ))),
         ),

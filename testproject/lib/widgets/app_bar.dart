@@ -1,77 +1,88 @@
 import 'package:flutter/material.dart';
 
-Widget _appBar() {
-    return  AppBar(
-      backgroundColor: Colors.deepPurple,
+AppBar appBar() {
+  return AppBar(
+      elevation: 0,
+      iconTheme: const IconThemeData(color: Colors.transparent),
+      backgroundColor: Color(0xff002c7b),
       actions: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 124),
-          child: Row(
-            children: <Widget>[
-              Image.asset(
-                "assets/outline_account_circle.png",
-                color: Colors.white,
-                height: 40,
-                width: 40,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Your Location',
-                      style: TextStyle(fontSize: 10),
-                    ),
-                    Row(children: <Widget>[
-                      Text(
-                        'Noida',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                      Icon(Icons.arrow_drop_down),
-                    ]),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
         Row(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 13),
-              child: Image.asset(
-                "assets/outline_qrscan.png",
-                color: Colors.white,
-                height: 24,
-                width: 24,
-              ),
+            Image.asset(
+              "assets/icons/account.png",
+              color: Colors.white,
+              height: 40,
+              width: 40,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Container(
+              height: 40,
+              width: 2,
+              color: Colors.grey,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 13),
-              child: Image.asset(
-                "assets/notifications.png",
-                color: Colors.white,
-                height: 24,
-                width: 24,
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: const <Widget>[
+                  CircleAvatar(
+                      radius: 15,
+                      backgroundImage: AssetImage("assets/icons/IN.png")),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'india',
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 13,
-              ),
-              child: Image.asset(
-                "assets/outline_help.png",
-                color: Colors.white,
-                height: 24,
-                width: 24,
-              ),
+            const SizedBox(
+              width: 110,
+            ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 13),
+                  child: Image.asset(
+                    "assets/icons/qr.png",
+                    color: Colors.white,
+                    height: 24,
+                    width: 24,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 13),
+                  child: Image.asset(
+                    "assets/icons/bell.png",
+                    color: Colors.white,
+                    height: 24,
+                    width: 24,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 13,
+                  ),
+                  child: Image.asset(
+                    "assets/icons/FAQ.png",
+                    color: Colors.white,
+                    height: 24,
+                    width: 24,
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
-      elevation: 0,
-    );
-  }
+        )
+      ]);
+}

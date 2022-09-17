@@ -19,13 +19,13 @@ class OrDivider extends StatelessWidget {
               width: 40,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(2),
-                  border: Border.all(color: Colors.grey, width: 2)),
+                  border: Border.all(color: Color(0xffcececf), width: 2)),
               child: const Center(
                 child: Text(
                   "OR",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.grey),
+                      fontWeight: FontWeight.w600, color: Color(0xffcececf)),
                 ),
               ),
             ),
@@ -39,8 +39,8 @@ class OrDivider extends StatelessWidget {
   Expanded buildDivider() {
     return const Expanded(
       child: Divider(
-        color: Color(0xFFD9D9D9),
-        height: 1.5,
+        color: Color(0xffcececf),
+        height: 3.0,
       ),
     );
   }

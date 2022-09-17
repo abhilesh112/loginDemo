@@ -17,17 +17,17 @@ class SocialLogin extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SocialIcon(
-               borderColor:const Color.fromARGB(255, 100, 71, 16),
+              borderColor: Color(0xffe15d5e),
               iconSrc: "assets/icons/google.png",
               press: () {},
             ),
             SocialIcon(
-               borderColor:const Color.fromARGB(255, 12, 49, 80),
+              borderColor: Color(0xff2463bb),
               iconSrc: "assets/icons/facebook.png",
               press: () {},
             ),
             SocialIcon(
-              borderColor:const Color.fromARGB(255, 12, 49, 80),
+              borderColor: Color(0xff2463bb),
               iconSrc: "assets/icons/linkedin.png",
               press: () {},
             ),
