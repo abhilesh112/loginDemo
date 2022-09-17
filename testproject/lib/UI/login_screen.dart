@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:testproject/widgets/social_login.dart';
@@ -69,6 +70,10 @@ class _LogINScreenState extends State<LogINScreen> {
                         margin: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6.0),
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(6),
                                   borderSide: const BorderSide(
@@ -93,6 +98,10 @@ class _LogINScreenState extends State<LogINScreen> {
                         ),
                         child: TextFormField(
                           decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6.0),
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(6),
                                   borderSide: const BorderSide(
@@ -146,11 +155,16 @@ class _LogINScreenState extends State<LogINScreen> {
                                   color: Colors.pink, fontSize: 18),
                               children: [
                                 TextSpan(
-                                  text: "Sign Up",
-                                  style: const TextStyle(
-                                      color: Colors.pink, fontSize: 18),
-                                  onEnter: (event) {},
-                                )
+                                    text: "Sign Up",
+                                    style: const TextStyle(
+                                        height: 1.5,
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.pink,
+                                        decorationColor: Colors.pink,
+                                        decorationThickness: 4,
+                                        fontSize: 18),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {})
                               ]))
 
                       // ElevatedButton(
