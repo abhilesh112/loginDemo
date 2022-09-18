@@ -28,7 +28,7 @@ class SocialLogin extends StatelessWidget {
             ),
             SocialIcon(
               borderColor: Color(0xff2463bb),
-              iconSrc: "assets/icons/linkedin.png",
+              iconSrc: "assets/icons/linkdin.png",
               press: () {},
             ),
           ],
