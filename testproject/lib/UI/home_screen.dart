@@ -2,6 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
+import 'package:testproject/helper/shared_prefer.dart';
+import 'package:testproject/model/api_response_model.dart';
 
 import '../model/image_slider_model.dart';
 import '../widgets/app_bar.dart';
@@ -15,6 +18,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  ResponseModel responseModel = ResponseModel();
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPrefs.getSavedModel().then((value) {
+      responseModel = value ?? ResponseModel();
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -72,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           bottom: 5.0,
           right: 0.0,
           left: 0.0,
-          child: Container(
+          child: SizedBox(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -108,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Container(
+      child: SizedBox(
         height: 200,
         width: double.infinity,
         child: Column(
@@ -155,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 10,
                       ),
                       Text(
+                        // (responseModel.chartName ?? "My UPI ID:").toString(),
                         "My UPI ID:",
                         style: GoogleFonts.lato(
                             fontSize: 14,

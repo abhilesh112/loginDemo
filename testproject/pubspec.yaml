@@ -26,9 +26,7 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  provider: ^6.0.3
   shared_preferences: ^2.0.15
-  get_it: ^7.2.0
   google_fonts: ^3.0.1
   carousel_slider: any
   flutter_secure_storage: ^5.0.2

@@ -22,7 +22,7 @@ class _LogINScreenState extends State<LogINScreen> {
   late String _email;
   late String _password;
   late bool checkvalue = false;
-NetworkUtil networkUtil = NetworkUtil(); 
+  NetworkUtil networkUtil = NetworkUtil();
   void _submit() {
     final form = formKey.currentState;
 
@@ -38,7 +38,7 @@ NetworkUtil networkUtil = NetworkUtil();
       content: Text("Email : $_email, password : $_password"),
     );
     scaffoldKey.currentState;
-    
+
     networkUtil.getCoinData();
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const HomeScreen()));
@@ -108,9 +108,6 @@ NetworkUtil networkUtil = NetworkUtil();
                           horizontal: 20,
                         ),
                         child: TextFormField(
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(6),
-                          ],
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6.0),
@@ -123,7 +120,7 @@ NetworkUtil networkUtil = NetworkUtil();
                                       width: 3, color: Colors.grey)),
                               labelText: ""),
                           validator: (val) =>
-                              val!.length > 6 ? 'Password less then 6' : null,
+                              val!.length < 6 ? 'Password to Short' : null,
                           onSaved: (val) => _password = val!,
                           obscureText: true,
                         ),
